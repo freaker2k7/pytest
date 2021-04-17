@@ -14,7 +14,7 @@ PAUSED_FOR = 0
 PAUSE_START = 0
 
 
-def stop():
+def stop() -> None:
   """Pause the timing.
   
   Pracrically, we start a measurement when the pause started
@@ -29,7 +29,7 @@ def stop():
   
   PAUSE_START = Time()
 
-def start():
+def start() -> None:
   """Continue the original timing.
   
   Here, we count how long did we pause for and reset the pasue start.
@@ -44,7 +44,7 @@ def start():
   PAUSED_FOR += Time() - PAUSE_START
   PAUSE_START = 0
 
-def time():
+def time() -> float:
   return Time() - PAUSED_FOR
 
 
