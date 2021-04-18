@@ -1,4 +1,3 @@
-import pytest
 from _pytest.timing import sleep
 from _pytest.timing import start
 from _pytest.timing import stop

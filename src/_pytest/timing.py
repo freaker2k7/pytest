@@ -10,42 +10,44 @@ from time import sleep
 from time import time as Time
 
 
-PAUSED_FOR = 0
-PAUSE_START = 0
+_paused_for = 0
+_pause_start = 0
 
 
 def stop() -> None:
-  """Pause the timing.
-  
-  Pracrically, we start a measurement when the pause started
-  so we can substract the diff from the final time.
-  
-  NOTE: Please don't use this with paralellized tests!
-  """
-  global PAUSE_START
-  
-  if PAUSE_START:
-    raise Exception("Maybe you meant to call pytest.timing.start() ?")
-  
-  PAUSE_START = Time()
+    """Pause the timing.
+
+    Pracrically, we start a measurement when the pause started
+    so we can substract the diff from the final time.
+
+    NOTE: Please don't use this with paralellized tests!
+    """
+    global _pause_start
+
+    if _pause_start:
+        raise Exception("Maybe you meant to call pytest.timing.start() ?")
+
+    _pause_start = Time()
+
 
 def start() -> None:
-  """Continue the original timing.
-  
-  Here, we count how long did we pause for and reset the pasue start.
-  
-  NOTE: Please don't use this with paralellized tests!
-  """
-  global PAUSED_FOR, PAUSE_START
-  
-  if not PAUSE_START:
-    raise Exception("Maybe you meant to call pytest.timing.stop() ?")
-  
-  PAUSED_FOR += Time() - PAUSE_START
-  PAUSE_START = 0
+    """Continue the original timing.
+
+    Here, we count how long did we pause for and reset the pasue start.
+
+    NOTE: Please don't use this with paralellized tests!
+    """
+    global _paused_for, _pause_start
+
+    if not _pause_start:
+        raise Exception("Maybe you meant to call pytest.timing.stop() ?")
+
+    _paused_for += Time() - _pause_start
+    _pause_start = 0
+
 
 def time() -> float:
-  return Time() - PAUSED_FOR
+    return Time() - _paused_for
 
 
 __all__ = ["perf_counter", "sleep", "time", "start", "stop"]
