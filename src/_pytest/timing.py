@@ -10,8 +10,8 @@ from time import sleep
 from time import time as Time
 
 
-_paused_for = .0
-_pause_start = .0
+_paused_for = 0.0
+_pause_start = 0.0
 
 
 def stop() -> None:
