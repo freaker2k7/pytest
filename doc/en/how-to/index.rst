@@ -20,6 +20,7 @@ Core pytest functionality
    monkeypatch
    doctest
    cache
+   timeing
 
 Test output and outcomes
 ----------------------------
