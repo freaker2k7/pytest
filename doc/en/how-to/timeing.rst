@@ -31,7 +31,7 @@ Suppose we have the following tests:
         Bootstrap(i * 2)
         res = MainCalculation(i)
         Cleanup(i // 2)
-        
+
         assert res == True
 
 If we wanted to measure, or at least look after, the performance of our test(s),
@@ -62,7 +62,7 @@ Here's how the prviouse code will look like after the modification:
         Cleanup(i // 2)
         # "Strating" the timer back (to live), otherwise it'll be "frozen" from the last stop.
         pytest.StartTimer()
-        
+
         assert res == True
 
 Now we got a slightly longer code, but hey, we added functionallity and nevertheless it's now
